@@ -1,0 +1,312 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  Tipografías de marca                                              */
+/* ------------------------------------------------------------------ */
+@font-face {
+  font-family: "Isidora";
+  src: url("./assets/fonts/IsidoraAlt-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Isidora";
+  src: url("./assets/fonts/IsidoraAlt-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Isidora";
+  src: url("./assets/fonts/IsidoraAlt-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("./assets/fonts/Roboto-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("./assets/fonts/Roboto-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("./assets/fonts/Roboto-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("./assets/fonts/Roboto-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("./assets/fonts/Roboto-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Tokens de marca (muestreados del PDF de la propuesta)             */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-brand-orange: #ed7601;
+  --color-brand-orange-light: #f2953a;
+  --color-brand-orange-soft: #f5c08b;
+  --color-brand-blue: #22477a;
+  --color-brand-blue-deep: #1b3a66;
+  --color-brand-sky: #2284d8;
+  --color-brand-navy: #0a182c;
+  --color-brand-mist: #f1f1f1;
+
+  --font-heading: "Isidora", "Roboto", sans-serif;
+  --font-body: "Roboto", system-ui, sans-serif;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out infinite;
+  --animate-spin-slow: spin 22s linear infinite;
+  --animate-spin-slower: spin 40s linear infinite;
+  --animate-pulse-soft: pulse-soft 3.5s ease-in-out infinite;
+  --animate-marquee: marquee 32s linear infinite;
+  --animate-shine: shine 2.4s ease-in-out infinite;
+  --animate-gradient: gradient-pan 9s ease infinite;
+  --animate-orbit: orbit 18s linear infinite;
+  --animate-bob-3d: bob-3d 7s ease-in-out infinite;
+  --animate-glow: glow 4s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-16px) rotate(2deg);
+    }
+  }
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.85;
+      transform: scale(1.05);
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes shine {
+    0% {
+      transform: translateX(-120%) skewX(-18deg);
+    }
+    60%,
+    100% {
+      transform: translateX(220%) skewX(-18deg);
+    }
+  }
+  @keyframes gradient-pan {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  @keyframes orbit {
+    from {
+      transform: rotate(0deg) translateX(var(--orbit-r, 60px)) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(var(--orbit-r, 60px)) rotate(-360deg);
+    }
+  }
+  /* Balanceo con profundidad real: usa el eje Z, no sólo Y */
+  @keyframes bob-3d {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg);
+    }
+    33% {
+      transform: translate3d(0, -14px, 40px) rotateX(4deg) rotateY(-5deg);
+    }
+    66% {
+      transform: translate3d(0, 8px, -20px) rotateX(-3deg) rotateY(5deg);
+    }
+  }
+  @keyframes glow {
+    0%,
+    100% {
+      opacity: 0.35;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.18);
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Base                                                              */
+/* ------------------------------------------------------------------ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-brand-navy);
+  background: #ffffff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+}
+
+::selection {
+  background: var(--color-brand-orange);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-blue);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-orange);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Utilidades 3D                                                     */
+/* ------------------------------------------------------------------ */
+@utility scene-sm {
+  perspective: 700px;
+  perspective-origin: 50% 50%;
+}
+@utility scene {
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+}
+@utility scene-lg {
+  perspective: 2000px;
+  perspective-origin: 50% 40%;
+}
+@utility preserve-3d {
+  transform-style: preserve-3d;
+}
+@utility backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Franja de brillo que recorre botones y tarjetas */
+@utility sheen {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      transparent 30%,
+      rgb(255 255 255 / 0.45) 50%,
+      transparent 70%
+    );
+    transform: translateX(-120%) skewX(-18deg);
+    pointer-events: none;
+  }
+
+  &:hover::after {
+    animation: shine 0.9s ease-out;
+  }
+}
+
+/*
+ * Fondos de página de la propuesta: blanco con un velo gris que entra por un
+ * costado. Son degradados horizontales a propósito: la portada y la sección
+ * siguiente comparten el mismo fondo y no se nota el empalme.
+ */
+@utility bg-fade-left {
+  background: linear-gradient(90deg, #e0e0e0 0%, #f0f0f0 14%, #fafafa 36%, #ffffff 62%);
+}
+@utility bg-fade-right {
+  background: linear-gradient(270deg, #d5d5d5 0%, #e9e9e9 16%, #f7f7f7 40%, #ffffff 66%);
+}
+
+/* Silueta de las portadas: base recta arriba y punta en V con esquinas suaves */
+@utility hero-shape {
+  clip-path: url(#hero-clip);
+}
+
+/* La textura de fondo es de ancho completo: al usarla recortada, sus bordes se desvanecen */
+@utility texture-fade {
+  -webkit-mask-image: radial-gradient(ellipse closest-side, #000 45%, transparent 100%);
+  mask-image: radial-gradient(ellipse closest-side, #000 45%, transparent 100%);
+}
+
+/* Texto con relleno degradado animado */
+@utility text-gradient-brand {
+  background: linear-gradient(
+    100deg,
+    var(--color-brand-orange) 0%,
+    var(--color-brand-orange-light) 35%,
+    var(--color-brand-orange) 70%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-pan 7s ease infinite;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Accesibilidad: respeta "reducir movimiento"                       */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
